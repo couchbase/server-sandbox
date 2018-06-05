@@ -1,18 +1,20 @@
-Couchbase 5.5.0-beta Sandbox
-============================
+Couchbase Sandbox
+=================
 
 # Running
 
 You should need nothing installed on your machine except Docker. Type:
 
-    docker run -d --name couchbase-sandbox -p 8091-8094:8091-8094 -p 11210:11210 -v $(pwd)/couchbase_demo:/opt/couchbase/var couchbase/server-sandbox:5.5.0-beta
+    docker run -d --name couchbase-sandbox -p 8091-8094:8091-8094 -p 11210:11210 -v $(pwd)/couchbase_demo:/opt/couchbase/var couchbase/server-sandbox:5.1.1
+
+(Replace "5.1.1" with the version of Couchbase Server you wish to explore.)
 
 Then visit [http://localhost:8091/](http://localhost:8091/) for the Server user interface. The login credentials are Administrator / password. You can also
 see this information by typing "docker logs couchbase-sandbox".
 
 This image is configured as follows:
 
-    * Couchbase Server 5.5.0-beta
+    * Couchbase Server
     * All services enabled with small but sufficient memory quotas
     * travel-sample bucket installed
     * FTS index named "hotels"
