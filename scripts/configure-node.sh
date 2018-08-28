@@ -102,7 +102,7 @@ echo
 echo "Creating RBAC 'admin' user on travel-sample bucket"
 couchbase_cli_check user-manage --set \
   --rbac-username admin --rbac-password password \
-  --roles 'bucket_admin[travel-sample]' --auth-domain local \
+  --roles 'bucket_full_access[travel-sample]' --auth-domain local \
   -c 127.0.0.1 -u Administrator -p password
 echo
 
