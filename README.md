@@ -5,9 +5,9 @@ Couchbase Sandbox
 
 You should need nothing installed on your machine except Docker. Type:
 
-    docker run -d --name couchbase-sandbox -p 8091-8094:8091-8094 -p 11210:11210 -v $(pwd)/couchbase_demo:/opt/couchbase/var couchbase/server-sandbox:6.0.0
+    docker run -d --name couchbase-sandbox -p 8091-8094:8091-8094 -p 11210:11210 -v $(pwd)/couchbase_demo:/opt/couchbase/var couchbase/server-sandbox:6.0.1
 
-(Replace "6.0.0" with the version of Couchbase Server you wish to explore.)
+(Replace "6.0.1" with the version of Couchbase Server you wish to explore.)
 
 Then visit [http://localhost:8091/](http://localhost:8091/) for the Server user interface. The login credentials are Administrator / password. You can also
 see this information by typing "docker logs couchbase-sandbox".
