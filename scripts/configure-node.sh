@@ -24,11 +24,12 @@ fi
 export PATH=/opt/couchbase/bin:${PATH}
 
 wait_for_uri() {
+  expected=$1
+  shift
   uri=$1
-  expected=$2
   echo "Waiting for $uri to be available..."
   while true; do
-    status=$(curl -s -w "%{http_code}" -o /dev/null $uri)
+    status=$(curl -s -w "%{http_code}" -o /dev/null $*)
     if [ "x$status" = "x$expected" ]; then
       break
     fi
@@ -70,7 +71,7 @@ curl_check() {
   fi
 }
 
-wait_for_uri http://127.0.0.1:8091/ui/index.html 200
+wait_for_uri 200 http://127.0.0.1:8091/ui/index.html
 
 echo "Setting memory quotas with curl:"
 curl_check http://127.0.0.1:8091/pools/default -d memoryQuota=512 -d indexMemoryQuota=512 -d ftsMemoryQuota=512
@@ -92,7 +93,7 @@ echo "Loading travel-sample with curl:"
 curl_check -u Administrator:password -X POST http://127.0.0.1:8091/sampleBuckets/install -d '["travel-sample"]'
 echo
 
-wait_for_uri http://127.0.0.1:8094/api/index 403
+wait_for_uri 200 http://127.0.0.1:8091/pools/default/buckets/travel-sample -u Administrator:password
 
 echo "Creating hotels FTS index with curl:"
 curl_check -u Administrator:password -X PUT http://127.0.0.1:8094/api/index/hotels -H Content-Type:application/json -d @/opt/couchbase/create-index.json
